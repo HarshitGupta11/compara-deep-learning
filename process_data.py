@@ -28,7 +28,7 @@ def get_nearest_neighbors(g,gs,n,a,d,ld,ldg):
                 break
         ne.append(sld[itemp])
         start=int(sldf.iloc[itemp,[3]])
-        print(start)
+        #print(start)
     #get the +n neighbors
     end=int(sldf.iloc[i,[4]])
     for j in range(n):
@@ -78,9 +78,6 @@ def create_data_homology_ls(a_h,d_h,n,a,d,ld,ldg):
                 yl,yr=get_nearest_neighbors(y,ys,n,a,d,ld,ldg)
                 lsy[y]=dict(b=yl,f=yr)
             lcmap[x+y]=1
-            t+=1
-            if t==1:
-                break
-        break
+
 
     return lsy,lcmap
