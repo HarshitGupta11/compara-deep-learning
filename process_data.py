@@ -2,6 +2,13 @@ import pandas
 import gc
 import numpy as np
 
+def create_map_list(l): #this function maps the indexes to values
+    t={}
+    for i in range(len(l)):
+        t[l[i]]=i
+
+    return t
+
 def get_nearest_neighbors(g,gs,n,a,d,ld,ldg):
     ne=[]
     nr=[]
@@ -58,6 +65,7 @@ def list_dict_genomes(a,n):
         ld.append(ldg)
     return ls,ld
 
+
 def create_data_homology_ls(a_h,d_h,n,a,d,ld,ldg):
     lsy={} #dictionary which stores +/- n genes of the given gene by id. Each key is a gene id which corresponds to the one in center.
     lcmap={} #dictionary which stores the gene pairs already considered
@@ -74,10 +82,11 @@ def create_data_homology_ls(a_h,d_h,n,a,d,ld,ldg):
                 xl,xr=get_nearest_neighbors(x,xs,n,a,d,ld,ldg)
                 lsy[x]=dict(b=xl,f=xr)
             if y not in lsy:
-                yarr=[]
                 yl,yr=get_nearest_neighbors(y,ys,n,a,d,ld,ldg)
                 lsy[y]=dict(b=yl,f=yr)
             lcmap[x+y]=1
-
+            t+=1
+            if t==8:
+                break
 
     return lsy,lcmap
